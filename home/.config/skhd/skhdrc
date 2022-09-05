@@ -1,0 +1,217 @@
+#!/usr/bin/env sh
+:: default : yabai -m config active_window_opacity 1.0; yabai -m config normal_window_opacity 0.95;
+
+# --- 15_base_launchers
+
+## Launch // Terminal // <> Enter ##
+alt - return : open -na /Applications/Alacritty.app
+
+## Launch // Browser // <><Shift> Enter ##
+alt + shift - return : open -na /Applications/Firefox.app
+
+# --- 30_navigation
+
+###############################################################################
+# Window and Workspace Navigation
+###############################################################################
+
+## Navigate // Relative Window // <> ↑ ↓ ← → ##
+alt - left  : yabai -m window --focus west
+alt - down  : yabai -m window --focus south
+alt - up    : yabai -m window --focus north
+alt - right : yabai -m window --focus east
+
+## Navigate // Relative Window // <> k j h l ##
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+## Navigate // Workspaces 1-10 // <> 0..9 ##
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
+alt - 6 : yabai -m space --focus 6
+alt - 7 : yabai -m space --focus 7
+alt - 8 : yabai -m space --focus 8
+alt - 9 : yabai -m space --focus 9
+
+## Navigate // Display Recent // <> d ##
+alt - d : yabai -m display --focus recent
+
+# --- 35_gaps
+
+###############################################################################
+# Gaps Window Resize
+###############################################################################
+
+## Resize // Window Gaps // <> + - ##
+alt - 0x1B : yabai -m space --padding rel:-5:-5:-5:-5; yabai -m space --gap rel:-5
+alt - 0x18 : yabai -m space --padding rel:5:5:5:5; yabai -m space --gap rel:5
+
+alt + shift - 0x1B : yabai -m space --padding rel:-20:-20:-20:-20; yabai -m space --gap rel:-20
+alt + shift - 0x18 : yabai -m space --padding rel:20:20:20:20; yabai -m space --gap rel:20
+
+# --- 40_workspace-config
+
+###############################################################################
+# Window and Workspace Configuration
+###############################################################################
+
+## Modify // Window Position // <><Shift> ↑ ↓ ← → ##
+alt + shift - left : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:-25:0; \
+    else \
+        yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west); \
+    fi
+alt + shift - down : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:0:25; \
+    else \
+        yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south); \
+    fi
+alt + shift - up : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:0:-25; \
+    else \
+        yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north); \
+    fi
+alt + shift - right : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:25:0; \
+    else \
+        yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east); \
+    fi
+
+## Modify // Window Position // <><Shift> k j h l ##
+alt + shift - h : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:-25:0; \
+    else \
+        yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west); \
+    fi
+alt + shift - j : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:0:25; \
+    else \
+        yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south); \
+    fi
+alt + shift - k : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:0:-25; \
+    else \
+        yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north); \
+    fi
+alt + shift - l : \
+    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
+        yabai -m window --move rel:25:0; \
+    else \
+        yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east); \
+    fi
+
+## Modify // Vertical Window Orientation // <> v ##
+alt - v : yabai -m window --insert east
+
+## Modify // Horizontal Window Orientation // <> g ##
+alt - g : yabai -m window --insert south
+
+## Modify // Toggle Space Window Layout Mode (bsp/float/stack) // <> t ##
+alt - t : \
+    layout=$(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end') \
+    && yabai -m space --layout $layout \
+    && osascript -e "display notification \"Set to: $layout\" with title \"Yabai Space Layout Mode\""
+
+## Modify // Toggle Window Orientation // <> Backspace ##
+alt - backspace : yabai -m window --toggle split
+
+## Modify // Window Fullscreen Toggle // <> f ##
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+## Modify // Window Floating Toggle // <><Shift> f ##
+alt + shift - f : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+
+## Modify // Move Window to Workspace 1 - 10 // <><Shift> 0..9 ##
+alt + shift - 1 : yabai -m window --space 1
+alt + shift - 2 : yabai -m window --space 2
+alt + shift - 3 : yabai -m window --space 3
+alt + shift - 4 : yabai -m window --space 4
+alt + shift - 5 : yabai -m window --space 5
+alt + shift - 6 : yabai -m window --space 6
+alt + shift - 7 : yabai -m window --space 7
+alt + shift - 8 : yabai -m window --space 8
+alt + shift - 9 : yabai -m window --space 9
+
+## Modify // Carry Window to Workspace 1 - 10// <><Cmd><Shift> 0..9 ##
+alt + cmd + shift - 1 : yabai -m window --space 1 && yabai -m space --focus 1
+alt + cmd + shift - 2 : yabai -m window --space 2 && yabai -m space --focus 2
+alt + cmd + shift - 3 : yabai -m window --space 3 && yabai -m space --focus 3
+alt + cmd + shift - 4 : yabai -m window --space 4 && yabai -m space --focus 4
+alt + cmd + shift - 5 : yabai -m window --space 5 && yabai -m space --focus 5
+alt + cmd + shift - 6 : yabai -m window --space 6 && yabai -m space --focus 6
+alt + cmd + shift - 7 : yabai -m window --space 7 && yabai -m space --focus 7
+alt + cmd + shift - 8 : yabai -m window --space 8 && yabai -m space --focus 8
+alt + cmd + shift - 9 : yabai -m window --space 9 && yabai -m space --focus 9
+
+# --- 40_display-config
+
+###############################################################################
+# Window and Display Configuration
+###############################################################################
+
+## Modify // Move Window to Recent Display// <><Shift> d ##
+alt + shift - d : yabai -m window --display recent
+
+## Modify // Carry Window to Recent Display// <><Cmd><Shift> d ##
+alt + cmd + shift - d : yabai -m window --display recent && yabai -m display recent
+
+# --- 50_resize-mode
+
+# Defines a new mode 'resize' with an on_enter command, that captures
+# keypresses
+:: resize @ : yabai -m config active_window_opacity 0.9; yabai -m config normal_window_opacity 0.4;
+
+## Resize // Enter Resize Mode // <> r ##
+alt - r ; resize
+
+# From 'resize' mode, activate mode 'default'
+# (this is the keypress required to leave resize mode)
+resize < escape ; default
+resize < return ; default
+resize < alt - r ; default
+
+## Resize // Equalize Windows // = ##
+resize < 0x18 : yabai -m space --balance
+
+## Resize // Resize Window // ↑ ↓ ← → ##
+resize < left : yabai -m window --resize left:25:0; yabai -m window --resize right:-25:0
+resize < down : yabai -m window --resize top:0:-25; yabai -m window --resize bottom:0:25
+resize < up : yabai -m window --resize top:0:25; yabai -m window --resize bottom:0:-25
+resize < right : yabai -m window --resize left:-25:0; yabai -m window --resize right:25:0
+
+resize < shift - left : yabai -m window --resize left:50:0; yabai -m window --resize right:-50:0
+resize < shift - down : yabai -m window --resize top:0:-50; yabai -m window --resize bottom:0:50
+resize < shift - up : yabai -m window --resize top:0:50; yabai -m window --resize bottom:0:-50
+resize < shift - right : yabai -m window --resize left:-50:0; yabai -m window --resize right:50:0
+
+# ## Resize // Resize Window // k j h l ##
+resize < h : yabai -m window --resize left:25:0; yabai -m window --resize right:-25:0
+resize < j : yabai -m window --resize top:0:-25; yabai -m window --resize bottom:0:25
+resize < k : yabai -m window --resize top:0:25; yabai -m window --resize bottom:0:-25
+resize < l : yabai -m window --resize left:-25:0; yabai -m window --resize right:25:0
+
+resize < shift - h : yabai -m window --resize left:50:0; yabai -m window --resize right:-50:0
+resize < shift - j : yabai -m window --resize top:0:-50; yabai -m window --resize bottom:0:50
+resize < shift - k : yabai -m window --resize top:0:50; yabai -m window --resize bottom:0:-50
+resize < shift - l : yabai -m window --resize left:-50:0; yabai -m window --resize right:50:0
+
+# --- 55_session_keybindings
+
+###############################################################################
+# Session Management
+###############################################################################
+
+## Session // Restart yabai // <><Ctrl> r ##
+alt + ctrl - r : brew services restart yabai
