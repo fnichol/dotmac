@@ -50,4 +50,7 @@ yabai -m rule --add title='Preferences$' manage=off
 # float settings windows
 yabai -m rule --add title='Settings$' manage=off
 
+# disable opacity change on focus
+yabai -m rule --add app="Plex" opacity=1.0
+
 echo "yabai configuration loaded.."
