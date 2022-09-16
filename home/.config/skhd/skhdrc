@@ -15,12 +15,6 @@ alt + shift - return : open -na /Applications/Firefox.app
 # Window and Workspace Navigation
 ###############################################################################
 
-## Navigate // Relative Window // <> ↑ ↓ ← → ##
-alt - left  : yabai -m window --focus west
-alt - down  : yabai -m window --focus south
-alt - up    : yabai -m window --focus north
-alt - right : yabai -m window --focus east
-
 ## Navigate // Relative Window // <> k j h l ##
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
@@ -59,32 +53,6 @@ alt + shift - 0x18 : yabai -m space --padding rel:20:20:20:20; yabai -m space --
 ###############################################################################
 # Window and Workspace Configuration
 ###############################################################################
-
-## Modify // Window Position // <><Shift> ↑ ↓ ← → ##
-alt + shift - left : \
-    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
-        yabai -m window --move rel:-25:0; \
-    else \
-        yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west); \
-    fi
-alt + shift - down : \
-    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
-        yabai -m window --move rel:0:25; \
-    else \
-        yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south); \
-    fi
-alt + shift - up : \
-    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
-        yabai -m window --move rel:0:-25; \
-    else \
-        yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north); \
-    fi
-alt + shift - right : \
-    if yabai -m query --windows | jq -e '[.[] | select(."has-focus" == true)] | first | ."is-floating" == true' >/dev/null; then \
-        yabai -m window --move rel:25:0; \
-    else \
-        yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east); \
-    fi
 
 ## Modify // Window Position // <><Shift> k j h l ##
 alt + shift - h : \
@@ -184,17 +152,6 @@ resize < alt - r ; default
 
 ## Resize // Equalize Windows // = ##
 resize < 0x18 : yabai -m space --balance
-
-## Resize // Resize Window // ↑ ↓ ← → ##
-resize < left : yabai -m window --resize left:25:0; yabai -m window --resize right:-25:0
-resize < down : yabai -m window --resize top:0:-25; yabai -m window --resize bottom:0:25
-resize < up : yabai -m window --resize top:0:25; yabai -m window --resize bottom:0:-25
-resize < right : yabai -m window --resize left:-25:0; yabai -m window --resize right:25:0
-
-resize < shift - left : yabai -m window --resize left:50:0; yabai -m window --resize right:-50:0
-resize < shift - down : yabai -m window --resize top:0:-50; yabai -m window --resize bottom:0:50
-resize < shift - up : yabai -m window --resize top:0:50; yabai -m window --resize bottom:0:-50
-resize < shift - right : yabai -m window --resize left:-50:0; yabai -m window --resize right:50:0
 
 # ## Resize // Resize Window // k j h l ##
 resize < h : yabai -m window --resize left:25:0; yabai -m window --resize right:-25:0
