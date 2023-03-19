@@ -38,7 +38,9 @@ yabai -m config right_padding 20
 yabai -m config window_gap 20
 
 floating_apps=(
+  'Calculator'
   'Installer'
+  'Speedtest'
   '^System Information$'
   '^System Preferences$'
 )
