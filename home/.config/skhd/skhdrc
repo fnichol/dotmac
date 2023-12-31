@@ -171,4 +171,7 @@ resize < shift - l : yabai -m window --resize left:-50:0; yabai -m window --resi
 ###############################################################################
 
 ## Session // Restart yabai // <><Ctrl> r ##
-alt + ctrl - r : brew services restart yabai
+alt + ctrl - r : \
+  osascript -e "display notification \"Restarting: yabai and skhd\" with title \"Restart yabai/skhd\"" \
+  && yabai --restart-service \
+  ; skhd --restart-service
