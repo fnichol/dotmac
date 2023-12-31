@@ -80,6 +80,12 @@ alt + shift - l : \
         yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east); \
     fi
 
+## Modify and Split // Window Position // <><Ctrl> k j h l ##
+alt + ctrl - h : yabai -m window --warp west
+alt + ctrl - j : yabai -m window --warp south
+alt + ctrl - k : yabai -m window --warp north
+alt + ctrl - l : yabai -m window --warp east
+
 ## Modify // Vertical Window Orientation // <> v ##
 alt - v : yabai -m window --insert east
 
