@@ -1,0 +1,140 @@
+# Start AeroSpace at login
+start-at-login = false
+
+# Gaps between windows (inner-*) and between monitor edges (outer-*).
+[gaps]
+inner.horizontal = 5
+inner.vertical = 5
+outer.left = 5
+outer.bottom = 5
+outer.top = 5
+outer.right = 5
+
+[mode.main.binding]
+# --- 15_base_launchers
+
+## Launch // Terminal // <> Enter ##
+alt-enter = "exec-and-forget open -na /Applications/Alacritty.app"
+
+## Launch // Browser // <><Shift> Enter ##
+alt-shift-enter = "exec-and-forget open -na /Applications/Firefox.app"
+
+# --- 30_navigation
+
+###############################################################################
+# Window and Workspace Navigation
+###############################################################################
+
+## Navigate // Relative Window // <> k j h l ##
+alt-h = "focus --boundaries-action wrap-around-the-workspace left"
+alt-j = "focus --boundaries-action wrap-around-the-workspace down"
+alt-k = "focus --boundaries-action wrap-around-the-workspace up"
+alt-l = "focus --boundaries-action wrap-around-the-workspace right"
+
+## Navigate // Workspaces 1-10 // <> 0..9 ##
+alt-1 = "workspace 1"
+alt-2 = "workspace 2"
+alt-3 = "workspace 3"
+alt-4 = "workspace 4"
+alt-5 = "workspace 5"
+alt-6 = "workspace 6"
+alt-7 = "workspace 7"
+alt-8 = "workspace 8"
+alt-9 = "workspace 9"
+alt-0 = "workspace 10"
+
+## Navigate // Display Recent // <> d ##
+alt-d = "workspace-back-and-forth"
+
+# --- 40_workspace-config
+
+###############################################################################
+# Window and Workspace Configuration
+###############################################################################
+
+## Modify // Window Position // <><Shift> k j h l ##
+alt-shift-h = "move left"
+alt-shift-j = "move down"
+alt-shift-k = "move up"
+alt-shift-l = "move right"
+
+## Modify and Split // Window Position // <><Ctrl> k j h l ##
+# alt + ctrl - h : yabai -m window --warp west
+# alt + ctrl - j : yabai -m window --warp south
+# alt + ctrl - k : yabai -m window --warp north
+# alt + ctrl - l : yabai -m window --warp east
+
+## Modify // Vertical Window Orientation // <> v ##
+alt-v = "layout vertical"
+
+## Modify // Horizontal Window Orientation // <> g ##
+alt-g = "layout horizontal"
+
+## Modify // Toggle Space Window Layout Mode (float/tiling) // <> t ##
+alt-t = "layout tiling floating"
+
+## Modify // Toggle Window Orientation // <> Backspace ##
+alt-backspace = "layout horizontal vertical"
+
+## Modify // Window Fullscreen Toggle // <> f ##
+alt-f = "fullscreen"
+
+## Modify // Window Floating Toggle // <><Shift> f ##
+alt-shift-f = "layout tiling floating"
+
+## Modify // Move Window to Workspace 1 - 10 // <><Shift> 0..9 ##
+alt-shift-1 = "move-node-to-workspace 1"
+alt-shift-2 = "move-node-to-workspace 2"
+alt-shift-3 = "move-node-to-workspace 3"
+alt-shift-4 = "move-node-to-workspace 4"
+alt-shift-5 = "move-node-to-workspace 5"
+alt-shift-6 = "move-node-to-workspace 6"
+alt-shift-7 = "move-node-to-workspace 7"
+alt-shift-8 = "move-node-to-workspace 8"
+alt-shift-9 = "move-node-to-workspace 9"
+alt-shift-0 = "move-node-to-workspace 10"
+
+## Modify // Carry Window to Workspace 1 - 10// <><Cmd><Shift> 0..9 ##
+alt-cmd-shift-1 = "move-node-to-workspace --focus-follows-window 1"
+alt-cmd-shift-2 = "move-node-to-workspace --focus-follows-window 2"
+alt-cmd-shift-3 = "move-node-to-workspace --focus-follows-window 3"
+alt-cmd-shift-4 = "move-node-to-workspace --focus-follows-window 4"
+alt-cmd-shift-5 = "move-node-to-workspace --focus-follows-window 5"
+alt-cmd-shift-6 = "move-node-to-workspace --focus-follows-window 6"
+alt-cmd-shift-7 = "move-node-to-workspace --focus-follows-window 7"
+alt-cmd-shift-8 = "move-node-to-workspace --focus-follows-window 8"
+alt-cmd-shift-9 = "move-node-to-workspace --focus-follows-window 9"
+alt-cmd-shift-0 = "move-node-to-workspace --focus-follows-window 10"
+
+# --- 50_resize-mode
+
+## Resize // Enter Resize Mode // <> r ##
+alt-r = "mode resize"
+
+# --- 55_session_keybindings
+
+###############################################################################
+# Session Management
+###############################################################################
+
+## Session // Reload Aerospace config // <><Shift> r ##
+alt-shift-r = "reload-config"
+
+[mode.resize.binding]
+## Resize // Equalize Windows // = ##
+equal = "balance-sizes"
+
+## Resize // Resize Window // k j h l ##
+h = "resize width -25"
+j = "resize height +25"
+k = "resize height -25"
+l = "resize width +25"
+
+shift-h = "resize width -50"
+shift-j = "resize height +50"
+shift-k = "resize height -50"
+shift-l = "resize width +50"
+
+## Resize // Leave Resize Mode // <Esc> <Enter> ##
+enter = "mode main"
+esc = "mode main"
