@@ -1,5 +1,5 @@
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 [gaps]
