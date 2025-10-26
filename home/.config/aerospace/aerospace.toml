@@ -111,6 +111,9 @@ alt-cmd-shift-0 = "move-node-to-workspace --focus-follows-window 10"
 ## Resize // Enter Resize Mode // <> r ##
 alt-r = "mode resize"
 
+## Service // Enter Service Mode // <><Shift> ; ##
+alt-shift-semicolon = "mode service"
+
 # --- 55_session_keybindings
 
 ###############################################################################
@@ -135,6 +138,20 @@ shift-j = "resize height +50"
 shift-k = "resize height -50"
 shift-l = "resize width +50"
 
-## Resize // Leave Resize Mode // <Esc> <Enter> ##
+## Resize // Leave Resize Mode // <Esc>/<Enter> ##
+enter = "mode main"
+esc = "mode main"
+
+[mode.service.binding]
+## Service // Reset Layout // r ##
+r = ["flatten-workspace-tree", "mode main"]
+
+## Service // Join Adjacent Windows in a Conainer // <><Shift> k j h l ##
+alt-shift-h = ["join-with left", "mode main"]
+alt-shift-j = ["join-with down", "mode main"]
+alt-shift-k = ["join-with up", "mode main"]
+alt-shift-l = ["join-with right", "mode main"]
+
+## Service // Leave Service Mode // <Esc>/<Enter> ##
 enter = "mode main"
 esc = "mode main"
