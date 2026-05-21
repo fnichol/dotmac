@@ -76,8 +76,11 @@ alt-t = "layout tiling floating"
 ## Modify // Toggle Window Orientation // <> Backspace ##
 alt-backspace = "layout horizontal vertical"
 
-## Modify // Window Fullscreen Toggle // <> f ##
-alt-f = "fullscreen"
+## Modify // Maximize Window Toggle // <> m ##
+alt-m = "fullscreen"
+
+## Modify // Window Native Fullscreen Toggle // <> f ##
+alt-f = "macos-native-fullscreen"
 
 ## Modify // Window Floating Toggle // <><Shift> f ##
 alt-shift-f = "layout tiling floating"
