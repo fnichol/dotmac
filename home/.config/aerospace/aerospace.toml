@@ -1,3 +1,5 @@
+config-version = 2
+
 # Start AeroSpace at login
 start-at-login = true
 
@@ -11,27 +13,30 @@ outer.top = 5
 outer.right = 5
 
 [mode.main.binding]
-# --- 15_base_launchers
+#
+# Bindings are configured based on the [Cosmic Desktop
+# Environment](https://system76.com/cosmic) defaults (with minimal
+# customizations)
+#
+# On systems with Cosmic installed, the defaults can be found at:
+# /usr/share/cosmic/com.system76.CosmicSettings.Shortcuts/v1/defaults
+#
 
-## Launch // Terminal // <> Enter ##
-alt-enter = "exec-and-forget open -na /Applications/Alacritty.app"
+# alt-shift-esc = "TODO: System(LogOut)"
+# alt-esc = "TODO: System(LockScreen)"
+# alt-q = "close --quit-if-last-window"
 
-## Launch // Browser // <><Shift> Enter ##
-alt-shift-enter = "exec-and-forget open -na /Applications/Firefox.app"
-
-# --- 30_navigation
-
-###############################################################################
-# Window and Workspace Navigation
-###############################################################################
-
-## Navigate // Relative Window // <> k j h l ##
 alt-h = "focus --boundaries-action wrap-around-the-workspace left"
 alt-j = "focus --boundaries-action wrap-around-the-workspace down"
 alt-k = "focus --boundaries-action wrap-around-the-workspace up"
 alt-l = "focus --boundaries-action wrap-around-the-workspace right"
+# alt-u = "TODO: Focus(Out)"
+# alt-i = "TODO: Focus(In)"
+alt-shift-h = "move left"
+alt-shift-j = "move down"
+alt-shift-k = "move up"
+alt-shift-l = "move right"
 
-## Navigate // Workspaces 1-10 // <> 0..9 ##
 alt-1 = "workspace 1"
 alt-2 = "workspace 2"
 alt-3 = "workspace 3"
@@ -42,95 +47,46 @@ alt-7 = "workspace 7"
 alt-8 = "workspace 8"
 alt-9 = "workspace 9"
 alt-0 = "workspace 10"
+alt-shift-1 = "move-node-to-workspace --focus-follows-window 1"
+alt-shift-2 = "move-node-to-workspace --focus-follows-window 2"
+alt-shift-3 = "move-node-to-workspace --focus-follows-window 3"
+alt-shift-4 = "move-node-to-workspace --focus-follows-window 4"
+alt-shift-5 = "move-node-to-workspace --focus-follows-window 5"
+alt-shift-6 = "move-node-to-workspace --focus-follows-window 6"
+alt-shift-7 = "move-node-to-workspace --focus-follows-window 7"
+alt-shift-8 = "move-node-to-workspace --focus-follows-window 8"
+alt-shift-9 = "move-node-to-workspace --focus-follows-window 9"
+alt-shift-0 = "move-node-to-workspace --focus-follows-window 10"
 
-## Navigate // Display Recent // <> d ##
-alt-d = "workspace-back-and-forth"
+alt-ctrl-h = "workspace --wrap-around prev"
+alt-ctrl-j = "workspace --wrap-around next"
+alt-ctrl-k = "workspace --wrap-around prev"
+alt-ctrl-l = "workspace --wrap-around next"
+alt-shift-ctrl-h = "move-node-to-workspace prev"
+alt-shift-ctrl-j = "move-node-to-workspace next"
+alt-shift-ctrl-k = "move-node-to-workspace prev"
+alt-shift-ctrl-l = "move-node-to-workspace next"
 
-# --- 40_workspace-config
+alt-o = "layout horizontal vertical"
+alt-s = "layout tiles accordion"
+# alt-y = "TODO: ToggleTiling"
+alt-g = "layout tiling floating"
+alt-x = "swap right"
 
-###############################################################################
-# Window and Workspace Configuration
-###############################################################################
-
-## Modify // Window Position // <><Shift> k j h l ##
-alt-shift-h = "move left"
-alt-shift-j = "move down"
-alt-shift-k = "move up"
-alt-shift-l = "move right"
-
-## Modify and Split // Window Position // <><Ctrl> k j h l ##
-# alt + ctrl - h : yabai -m window --warp west
-# alt + ctrl - j : yabai -m window --warp south
-# alt + ctrl - k : yabai -m window --warp north
-# alt + ctrl - l : yabai -m window --warp east
-
-## Modify // Vertical Window Orientation // <> v ##
-alt-v = "layout vertical"
-
-## Modify // Horizontal Window Orientation // <> g ##
-alt-g = "layout horizontal"
-
-## Modify // Toggle Space Window Layout Mode (float/tiling) // <> t ##
-alt-t = "layout tiling floating"
-
-## Modify // Toggle Window Orientation // <> Backspace ##
-alt-backspace = "layout horizontal vertical"
-
-## Modify // Maximize Window Toggle // <> m ##
 alt-m = "fullscreen"
-
-## Modify // Window Native Fullscreen Toggle // <> f ##
 alt-f = "macos-native-fullscreen"
+alt-r = "resize height +50"
+alt-shift-r = "resize height -50"
+alt-ctrl-r = "mode resize"
 
-## Modify // Window Floating Toggle // <><Shift> f ##
-alt-shift-f = "layout tiling floating"
+alt-b = "exec-and-forget open -na /Applications/Firefox.app"
+alt-t = "exec-and-forget open -na /Applications/Ghostty.app"
 
-## Modify // Move Window to Workspace 1 - 10 // <><Shift> 0..9 ##
-alt-shift-1 = "move-node-to-workspace 1"
-alt-shift-2 = "move-node-to-workspace 2"
-alt-shift-3 = "move-node-to-workspace 3"
-alt-shift-4 = "move-node-to-workspace 4"
-alt-shift-5 = "move-node-to-workspace 5"
-alt-shift-6 = "move-node-to-workspace 6"
-alt-shift-7 = "move-node-to-workspace 7"
-alt-shift-8 = "move-node-to-workspace 8"
-alt-shift-9 = "move-node-to-workspace 9"
-alt-shift-0 = "move-node-to-workspace 10"
-
-## Modify // Carry Window to Workspace 1 - 10// <><Cmd><Shift> 0..9 ##
-alt-cmd-shift-1 = "move-node-to-workspace --focus-follows-window 1"
-alt-cmd-shift-2 = "move-node-to-workspace --focus-follows-window 2"
-alt-cmd-shift-3 = "move-node-to-workspace --focus-follows-window 3"
-alt-cmd-shift-4 = "move-node-to-workspace --focus-follows-window 4"
-alt-cmd-shift-5 = "move-node-to-workspace --focus-follows-window 5"
-alt-cmd-shift-6 = "move-node-to-workspace --focus-follows-window 6"
-alt-cmd-shift-7 = "move-node-to-workspace --focus-follows-window 7"
-alt-cmd-shift-8 = "move-node-to-workspace --focus-follows-window 8"
-alt-cmd-shift-9 = "move-node-to-workspace --focus-follows-window 9"
-alt-cmd-shift-0 = "move-node-to-workspace --focus-follows-window 10"
-
-# --- 50_resize-mode
-
-## Resize // Enter Resize Mode // <> r ##
-alt-r = "mode resize"
-
-## Service // Enter Service Mode // <><Shift> ; ##
-alt-shift-semicolon = "mode service"
-
-# --- 55_session_keybindings
-
-###############################################################################
-# Session Management
-###############################################################################
-
-## Session // Reload Aerospace config // <><Shift> r ##
-alt-shift-r = "reload-config"
+alt-ctrl-shift-r = "reload-config"
 
 [mode.resize.binding]
-## Resize // Equalize Windows // = ##
 equal = "balance-sizes"
 
-## Resize // Resize Window // k j h l ##
 h = "resize width -25"
 j = "resize height +25"
 k = "resize height -25"
@@ -141,20 +97,5 @@ shift-j = "resize height +50"
 shift-k = "resize height -50"
 shift-l = "resize width +50"
 
-## Resize // Leave Resize Mode // <Esc>/<Enter> ##
-enter = "mode main"
-esc = "mode main"
-
-[mode.service.binding]
-## Service // Reset Layout // r ##
-r = ["flatten-workspace-tree", "mode main"]
-
-## Service // Join Adjacent Windows in a Conainer // <><Shift> k j h l ##
-alt-shift-h = ["join-with left", "mode main"]
-alt-shift-j = ["join-with down", "mode main"]
-alt-shift-k = ["join-with up", "mode main"]
-alt-shift-l = ["join-with right", "mode main"]
-
-## Service // Leave Service Mode // <Esc>/<Enter> ##
 enter = "mode main"
 esc = "mode main"
