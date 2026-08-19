@@ -92,8 +92,8 @@ alt-x = "swap right"
 
 alt-m = "fullscreen"
 alt-f = "macos-native-fullscreen"
-alt-r = "resize height +50"
-alt-shift-r = "resize height -50"
+alt-r = "resize smart +50"
+alt-shift-r = "resize smart -50"
 alt-ctrl-r = "mode resize"
 
 alt-b = "exec-and-forget open -na /Applications/Firefox.app"
