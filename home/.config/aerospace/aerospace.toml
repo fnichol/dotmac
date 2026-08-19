@@ -49,6 +49,15 @@ alt-shift-j = "move down"
 alt-shift-k = "move up"
 alt-shift-l = "move right"
 
+# These will join a window with another to yield a horizontal/vertical split.
+# This behavior is a little more natural by default with Cosmic Desktop, but as
+# AeroSpace draws more directly from i3 the tree-joining is a little more
+# explicit here.
+alt-shift-ctrl-h = "join-with left"
+alt-shift-ctrl-j = "join-with down"
+alt-shift-ctrl-k = "join-with up"
+alt-shift-ctrl-l = "join-with right"
+
 alt-1 = "workspace 1"
 alt-2 = "workspace 2"
 alt-3 = "workspace 3"
@@ -74,10 +83,6 @@ alt-ctrl-h = "workspace --wrap-around prev"
 alt-ctrl-j = "workspace --wrap-around next"
 alt-ctrl-k = "workspace --wrap-around prev"
 alt-ctrl-l = "workspace --wrap-around next"
-alt-shift-ctrl-h = "move-node-to-workspace prev"
-alt-shift-ctrl-j = "move-node-to-workspace next"
-alt-shift-ctrl-k = "move-node-to-workspace prev"
-alt-shift-ctrl-l = "move-node-to-workspace next"
 
 alt-o = "layout horizontal vertical"
 alt-s = "layout tiles accordion"
